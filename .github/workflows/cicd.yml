@@ -48,4 +48,4 @@ jobs:
         key: ${{secrets.SSH_PRIVATE_KEY}}
         inventory: |
           [all]
-          172.17.0.1 ansible_user=localhost
+          172.17.0.1 ansible_user=arnab
