@@ -41,10 +41,8 @@ jobs:
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
 
-    - name: Set up SSH key
-      uses: webfactory/ssh-agent@master
+    - name: Run playbook
+      uses: dawidd6/action-ansible-playbook@v2
       with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Ansible Deploy
-      run: ansible-playbook -i inventory playbook.yml
+        playbook: playbook.yml
+        key: ${{secrets.SSH_PRIVATE_KEY}}
