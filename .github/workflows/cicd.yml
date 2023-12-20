@@ -45,7 +45,8 @@ jobs:
       uses: dawidd6/action-ansible-playbook@v2
       with:
         playbook: playbook.yml
-        key: ${{secrets.SSH_PRIVATE_KEY}}
         inventory: |
           [all]
           172.17.0.1 ansible_user=arnab
+        known_hosts: |
+          172.17.0.1 ssh-${{secrets.SSH_PRIVATE_KEY}}
