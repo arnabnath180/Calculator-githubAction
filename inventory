@@ -1,2 +1,2 @@
 [ubuntu22.04]
-localhost ansible_user=arnab
+127.0.0.1 ansible_user=arnab
