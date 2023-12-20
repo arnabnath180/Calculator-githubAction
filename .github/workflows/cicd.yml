@@ -40,3 +40,6 @@ jobs:
 
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
+
+    - name: Ansible Deploy
+      run: ansible-playbook -i inventory playbook.yml
