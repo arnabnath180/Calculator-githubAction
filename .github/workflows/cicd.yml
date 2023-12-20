@@ -41,12 +41,15 @@ jobs:
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
 
-    - name: Run playbook
-      uses: dawidd6/action-ansible-playbook@v2
-      with:
-        playbook: playbook.yml
-        inventory: |
-          [all]
-          172.17.0.1 ansible_user=arnab
-        known_hosts: |
-          172.17.0.1 ssh-${{secrets.SSH_PRIVATE_KEY}}
+    - name: Set up SSH key and disable host key checking
+      env:
+        DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo "export GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=no'" >> $GITHUB_ENV
+
+    - name: Run Ansible playbook
+      run: |
+        ansible-playbook -i inventory playbook.yml
