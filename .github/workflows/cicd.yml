@@ -53,3 +53,6 @@ jobs:
     - name: Run Ansible playbook
       run: |
         ansible-playbook -i inventory playbook.yml
+
+    - name: Debug SSH connection
+      run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa user@your-hostname
