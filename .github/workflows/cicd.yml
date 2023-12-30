@@ -44,4 +44,4 @@ jobs:
 
 
     - name: Run Ansible playbook
-      run: ansible-playbook -i inventory.ini your_playbook.yml
+      run: ansible-playbook -i inventory playbook.yml
