@@ -8,5 +8,3 @@
         state: started
     - name: pull docker image
       shell: docker pull arnabxyz/calculatorgithubaction
-    - name: running container
-      shell: docker run -it -d arnabxyz/calculatorgithubaction
