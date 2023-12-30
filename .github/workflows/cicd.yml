@@ -41,19 +41,4 @@ jobs:
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
 
-    - name: Set up SSH key and check connection
-      env:
-        DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        HOSTNAME: 172.17.0.1  # Replace with your actual hostname or IP address
-      run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-        
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/id_rsa
-          # Fetch the host key
-          ssh-keyscan -H $HOSTNAME >> ~/.ssh/known_hosts
-          
-          # Check the SSH connection
-          ssh -o StrictHostKeyChecking=yes -i ~/.ssh/id_rsa $HOSTNAME 'echo Connection successful.'
+    
