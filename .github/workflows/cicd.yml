@@ -41,7 +41,9 @@ jobs:
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
 
-
-
     - name: Run Ansible playbook
-      run: ansible-playbook -i inventory playbook.yml
+      run: |
+          ansible-playbook -i inventory playbook.yml
+      env:
+          ANSIBLE_HOST_KEY_CHECKING: False
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
