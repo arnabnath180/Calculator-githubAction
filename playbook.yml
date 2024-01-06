@@ -2,6 +2,7 @@
 - name: Pull docker image
   hosts: all
 
+
   tasks:
     - name: Start docker service
       service:
@@ -11,3 +12,6 @@
       shell: docker pull arnabxyz/calculatorgithubaction
     - name: running container
       shell: docker run -it -d arnabxyz/calculatorgithubaction
+
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
