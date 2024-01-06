@@ -41,12 +41,17 @@ jobs:
     - name: Push Docker image
       run: docker push arnabxyz/calculatorgithubaction:latest
 
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.2
-      with:
-        host: 192.168.0.125
-        username: arnab
-        password: Sabya11$
-        port: 22
-        script: whoami
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Run Ansible playbook
+        run: |
+          ansible-playbook -i inventory playbook.yml
+       
+
 
