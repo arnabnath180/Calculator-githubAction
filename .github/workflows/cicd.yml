@@ -42,7 +42,7 @@ jobs:
       run: docker push arnabxyz/calculatorgithubaction:latest
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -60,7 +60,7 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
-          ansible-playbook -i inventory playbook.yml
+          ansible-playbook -i localhost playbook.yml
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
