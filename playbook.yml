@@ -1,7 +1,7 @@
 ---
 - name: Pull docker image
-  hosts: localhost
-  connection: local
+  hosts: all
+
   tasks:
     - name: Start docker service
       service:
