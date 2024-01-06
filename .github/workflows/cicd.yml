@@ -21,6 +21,7 @@ jobs:
       - name: Setup SSH
         shell: bash
         run: |
+          service ssh status
           eval `ssh-agent -s`
           mkdir -p /home/runner/.ssh/
           touch /home/runner/.ssh/id_rsa
@@ -30,10 +31,5 @@ jobs:
       - name: Run ansible script
         shell: bash
         run: |
-          service ssh status
           cd infrastructure/ansible
-          cat setup-prod.yml
-          ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} -i hosts.yml setup-prod.yml
-
-
-
+          ansible-playbook --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} -i inventory playbook.yml
