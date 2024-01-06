@@ -60,7 +60,7 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
-          ansible-playbook -i localhost playbook.yml
+          ansible-playbook -i inventory playbook.yml
        
 
 
