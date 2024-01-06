@@ -14,17 +14,26 @@ on:
   
 
 jobs:
-  deploy:
+  run-playbooks:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-
-      - name: Run Ansible playbook
+      - uses: actions/checkout@v3
+      - name: Setup SSH
+        shell: bash
         run: |
-          ansible-playbook -i inventory playbook.yml
-       
+          eval `ssh-agent -s`
+          mkdir -p /home/runner/.ssh/
+          touch /home/runner/.ssh/id_rsa
+          echo -e "${{secrets.SSH_KEY}}" > /home/runner/.ssh/id_rsa
+          chmod 700 /home/runner/.ssh/id_rsa
+          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
+      - name: Run ansible script
+        shell: bash
+        run: |
+          service ssh status
+          cd infrastructure/ansible
+          cat setup-prod.yml
+          ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} -i hosts.yml setup-prod.yml
+
 
 
