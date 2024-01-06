@@ -18,21 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          submodules: true
-          token: ${{secrets.REPO_TOKEN}}
-      - name: Setup SSH
-        shell: bash
-        run: |
-          service ssh status
-          eval `ssh-agent -s`
-          mkdir -p /home/runner/.ssh/
-          touch /home/runner/.ssh/id_rsa
-          echo -e "${{secrets.SSH_KEY}}" > /home/runner/.ssh/id_rsa
-          chmod 700 /home/runner/.ssh/id_rsa
-          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
-      - name: Run ansible script
-        shell: bash
-        run: |
-          cd infrastructure/ansible
-          ansible-playbook --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} -i inventory playbook.yml
+          # Required, playbook filepath
+          playbook: playbook.yml
+          # Optional, directory where playbooks live
+
+          key: ${{secrets.SSH_KEY}}
+          # Optional, literal inventory file contents
+          inventory: inventory
