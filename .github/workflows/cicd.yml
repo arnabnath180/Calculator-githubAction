@@ -38,4 +38,4 @@ jobs:
           ansible-playbook -i inventory playbook.yml --private-key=ansible_key
           env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
-           ANSIBLE_USER: arnab@172.17.0.1
+          ANSIBLE_USER: "arnab@172.17.0.1"
