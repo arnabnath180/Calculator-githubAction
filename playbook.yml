@@ -13,5 +13,3 @@
     - name: running container
       shell: docker run -it -d arnabxyz/calculatorgithubaction
 
-  vars:
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
