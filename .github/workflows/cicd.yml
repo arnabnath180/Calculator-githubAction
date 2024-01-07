@@ -35,6 +35,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_KEY }}" > ansible_key
           chmod 600 ansible_key
-         
+          ansible-playbook -i inventory playbook.yml --private-key=ansible_key
           env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
+           ANSIBLE_USER: arnab@172.17.0.1
