@@ -32,5 +32,5 @@ jobs:
           # Optional, literal inventory file contents
           inventory: |
             [ubuntu22.04]
-            arnab@172.17.0.1 
+            172.17.0.1 ansible_user=arnab 
             
