@@ -21,21 +21,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          python-version: 3.8
+          # Required, playbook filepath
+          playbook: playbook.yml
 
-      - name: Install Ansible
-        run: |
-          python -m pip install --upgrade pip
-          pip install ansible
-
-      - name: Deploy with Ansible
-        run: |
-          echo "${{ secrets.SSH_KEY }}" > ansible_key
-          chmod 600 ansible_key
-          ansible-playbook -i inventory playbook.yml --private-key=ansible_key
-          env:
-          ANSIBLE_HOST_KEY_CHECKING: "False"
-          ANSIBLE_USER: "arnab@172.17.0.1"
+          # Optional, SSH private key
+          key: ${{secrets.SSH_KEY}}
+          # Optional, literal inventory file contents
+          inventory: |
+            
