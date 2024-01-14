@@ -31,4 +31,6 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           # Optional, literal inventory file contents
           inventory: |
+            [ubuntu22.04]
+            172.17.0.1 
             
