@@ -32,5 +32,8 @@ jobs:
           # Optional, literal inventory file contents
           inventory: |
             [ubuntu22.04]
-            172.17.0.1 ansible_user=arnab 
-            
+            172.17.0.1 
+
+          options: |
+            --user "arnab"
+            --ssh-extra-args "-o StrictHostKeyChecking=no"
