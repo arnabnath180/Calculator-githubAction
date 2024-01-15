@@ -28,7 +28,7 @@ jobs:
           playbook: playbook.yml
 
           # Optional, SSH private key
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          key: ${{secrets.ANSIBLE_KEY}}
           # Optional, literal inventory file contents
           inventory: |
             ${{ secrets.ANSIBLE_INVENTORY}}
