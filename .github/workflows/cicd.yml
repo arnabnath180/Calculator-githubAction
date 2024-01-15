@@ -28,10 +28,14 @@ jobs:
           playbook: playbook.yml
 
           # Optional, SSH private key
-          key: ${{secrets.ANSIBLE_KEY}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
           inventory: |
             ${{ secrets.ANSIBLE_INVENTORY}}
+
+          known_hosts: |
+            arnab@172.17.0.1 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC++ykmiYpFbTV9M8pRQUziuBOlnPZCqy8tLw1VdtBBGwJnxyMmNh+ZaOYqrqbnIMT1zIaCh5SKQ8lanA/7HzcNCt9Hn3GxfF18GW4i1OhoDWetwxQ8ycDiokX2/qLHcmkOyEs2jhyFfzDZryROqo6vajAXUGCgolzz4bGMQ6FMVxWHuuNQZaay2o/a1LqCXfOQB2paf7woDwzuKjBftK02Sel0g9232uZqoN4jHPB9f3RNqmaptx4yaCEyEzZJX0ZhKn5noqSR6N/ajYD8PSDTw14V02kjYKPnaMTgVzb09fUaUHdwtT5a1B4HkXmWMfo4sq6iYKDVs1qMT+XzwSnSIJp41wzknuaOKo3qGi36TnQpvhmPsYWE32qpPRQF1A33HHMkMUwGit7Uii/+AsCl8TvuQdy9v0NauT3CTZTyNnu4gFCdZycmp5bUYcvuEQ0jTdOANpRLzYSKG6zEvzf1zc9w+JBcBAfrovUU9PGCo4j87FgzI6sljA5W6GWCwmM= arnab@arnab-Inspiron-15-3520
+
 
           options: |
             --ssh-extra-args "-o StrictHostKeyChecking=no"
