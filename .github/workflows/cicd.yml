@@ -28,10 +28,10 @@ jobs:
           playbook: playbook.yml
 
           # Optional, SSH private key
-          key: ${{secrets.SECRET_SSH_KEY}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
           inventory: |
-            ${{ secrets.ANSIBLE_INVENTORY }}
+            ${{ secrets.ANSIBLE_INVENTORY}}
 
           options: |
             --ssh-extra-args "-o StrictHostKeyChecking=no"
