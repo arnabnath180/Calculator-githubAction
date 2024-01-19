@@ -24,8 +24,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run playbook
-
+      - name: Setting up SSH key
         run: |
-          cd /usr/bin
-          ansible-playbook playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no" -i inventory --private-key <(echo "$SSH_PRIVATE_KEY") -u ansible
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+            chmod 600 private_key.pem
+      - name: Run Ansible Playbook
+        run: |
+            sudo apt update
+            sudo apt install -y ansible
+            ansible-playbook -i inventory playbook.yml --private-key=private_key.pem 
