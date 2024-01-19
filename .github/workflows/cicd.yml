@@ -23,4 +23,4 @@ jobs:
 
       - name: Run playbook
         run: |
-          ansible-playbook playbook.yml --inventory-file inventory
+          ansible-playbook ANSIBLE_SSH_ARGS="-o StrictHostKeyChecking=no" playbook.yml --inventory-file inventory
