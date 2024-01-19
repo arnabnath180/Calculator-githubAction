@@ -27,4 +27,4 @@ jobs:
       - name: Run playbook
 
         run: |
-          echo "aaa"
+          ansible-playbook playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no" -i inventory --private-key <(echo "$SSH_PRIVATE_KEY") -u ansible
