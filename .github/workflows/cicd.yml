@@ -27,4 +27,4 @@ jobs:
       - name: Run playbook
 
         run: |
-          echo "$SSH_PRIVATE_KEY"
+          echo "aaa"
