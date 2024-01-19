@@ -17,10 +17,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Run playbook
+
         run: |
-          ansible-playbook playbook.yml -i inventory --private-key {{secrets.SSH_PRIVATE_KEY}} -u ansible
+          ansible-playbook playbook.yml -i inventory --private-key <(echo "$SSH_PRIVATE_KEY") -u ansible
