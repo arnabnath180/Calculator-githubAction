@@ -1,2 +1,2 @@
 [ubuntu22.04]
-172.17.0.1 ansible_ssh_user=arnab ansible_ssh_pass=Sabya11$
+172.16.143.138 ansible_ssh_user=arnab ansible_ssh_pass=Sabya11$
