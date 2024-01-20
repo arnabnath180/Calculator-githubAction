@@ -28,8 +28,7 @@ jobs:
           playbook: playbook.yml
           # Optional, directory where playbooks live
           #directory: ./
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          #key: ${{secrets.SSH_PRIVATE_KEY}}
           options: |
             --inventory inventory
-            --ssh-extra-args "-o StrictHostKeyChecking=no"
             --extra-vars "ssh_pass=${{ secrets.SSH_PASS }}"

@@ -1,2 +1,8 @@
-[ubuntu22.04]
-172.17.0.1 ansible_user=arnab
+---
+all:
+  children:
+    web-servers:
+      hosts:
+        localhost
+      vars:
+        ansible_user: flanders
