@@ -17,17 +17,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setting up SSH key
-        run: |
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
-            chmod 600 private_key.pem
-      - name: Run Ansible Playbook
-        run: |
-            ansible-playbook -i inventory playbook.yml --private-key=private_key.pem -u ansible
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: playbook.yml
+          # Optional, directory where playbooks live
+          #directory: ./
+
+          options: |
+            --inventory inventory    
+            --extra-vars "ssh_pass=${{ secrets.SSH_PASS }}"
