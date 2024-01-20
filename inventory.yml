@@ -5,5 +5,5 @@ all:
       hosts:
         172.17.0.1
       vars:
-        ansible_user: arnab
+        ansible_user: test
         ansible_ssh_pass: '{{ssh_pass}}'
