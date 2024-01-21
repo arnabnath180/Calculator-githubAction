@@ -56,7 +56,7 @@ jobs:
           # Required, playbook filepath
           playbook: playbook.yml
           # Optional, directory where playbooks live
-          directory: Calculator-githubAction/Calculator-githubAction
+          directory: Calculator-githubAction/Calculator-githubAction/
           key: ${{secrets.SSH_PRIVATE_KEY}}
 
           inventory: |
