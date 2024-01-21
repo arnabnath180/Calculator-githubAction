@@ -42,7 +42,7 @@ jobs:
         run: docker push arnabxyz/calculatorgithubaction:latest
 
   deploy:
-    needs: publish
+    needs: build
     runs-on: self-hosted
     steps:
       - name: Pull Docker image
