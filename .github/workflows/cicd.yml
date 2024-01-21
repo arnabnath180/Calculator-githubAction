@@ -56,8 +56,12 @@ jobs:
           # Required, playbook filepath
           playbook: playbook.yml
           # Optional, directory where playbooks live
-          #directory: ./
+          directory: ./
           key: ${{secrets.SSH_PRIVATE_KEY}}
+
+          inventory: |
+            [ubuntu22.04]
+            172.17.0.1 ansible_user=arnab
+
           options: |
-            --inventory inventory
             --ssh-extra-args "-o StrictHostKeyChecking=no"
