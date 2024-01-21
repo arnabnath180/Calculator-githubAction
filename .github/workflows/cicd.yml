@@ -49,14 +49,14 @@ jobs:
 #        run: ls _work
 #      - name: Start new container
 #        run: docker run -it -d arnabxyz/calculatorgithubaction
-
+      - uses: actions/checkout@v3
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: /home/arnab/actions-runner/_work/Calculator-githubAction/Calculator-githubAction/playbook.yml
-          # Optional, directory where playbooks live
-          #directory: Calculator-githubAction/
+          playbook: playbook.yml
+
+
           key: ${{secrets.SSH_PRIVATE_KEY}}
 
           inventory: |
