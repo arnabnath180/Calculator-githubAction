@@ -45,19 +45,19 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-      - name: Pull Docker image
-        run: docker pull arnabxyz/calculatorgithubaction
-      - name: Start new container
-        run: docker run -it -d arnabxyz/calculatorgithubaction
+#      - name: Pull Docker image
+#        run: docker pull arnabxyz/calculatorgithubaction
+#      - name: Start new container
+#        run: docker run -it -d arnabxyz/calculatorgithubaction
 
-#      - name: Run playbook
-#        uses: dawidd6/action-ansible-playbook@v2
-#        with:
-#          # Required, playbook filepath
-#          playbook: playbook.yml
-#          # Optional, directory where playbooks live
-#          #directory: ./
-#          key: ${{secrets.SSH_PRIVATE_KEY}}
-#          options: |
-#            --inventory inventory
-#            --ssh-extra-args "-o StrictHostKeyChecking=no"
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: playbook.yml
+          # Optional, directory where playbooks live
+          #directory: ./
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          options: |
+            --inventory inventory
+            --ssh-extra-args "-o StrictHostKeyChecking=no"
