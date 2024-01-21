@@ -54,7 +54,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: Calculator-githubAction/playbook.yml
+          playbook: /home/arnab/actions-runner/_work/Calculator-githubAction/Calculator-githubAction/playbook.yml
           # Optional, directory where playbooks live
           #directory: Calculator-githubAction/
           key: ${{secrets.SSH_PRIVATE_KEY}}
