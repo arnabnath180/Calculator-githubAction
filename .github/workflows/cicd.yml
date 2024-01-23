@@ -45,10 +45,6 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-#      - name: Pull Docker image
-#        run: ls _work
-#      - name: Start new container
-#        run: docker run -it -d arnabxyz/calculatorgithubaction
       - uses: actions/checkout@v3
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
